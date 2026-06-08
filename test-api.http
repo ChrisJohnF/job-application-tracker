@@ -1,0 +1,15 @@
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "company": "Diakoneo",
+  "position": "IT-Anwendungsberater Connext Vivendi",
+  "source": "Stepstone",
+  "link": "https://www.stepstone.de",
+  "applied_date": "2026-06-08",
+  "status": "Beworben",
+  "salary": "50000",
+  "contact_person": "",
+  "notes": "Erste Bewerbung im Tracker",
+  "interview_date": null
+}
