@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "test": "echo \"No tests configured yet\" && exit 0"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
