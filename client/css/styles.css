@@ -14,3 +14,41 @@ h1 {
     margin-bottom: 10px;
     border-radius: 8px;
 }
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card-label {
+    display: block;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.dashboard-card strong {
+    font-size: 32px;
+}

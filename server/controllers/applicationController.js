@@ -1,17 +1,17 @@
-const db = require("../database/database.js");
+const applicationModel = require("../models/applicationModel.js");
 
-const getAllApplications = (req, res) => {
-    db.all("SELECT * FROM applications ORDER BY created_at DESC", [], (err, rows) => {
-        if (err) {
-            console.error("Error fetching applications:", err.message);
-            return res.status(500).json({ error: "Failed to fetch applications" });
-        }
+const getAllApplications = async (req, res) => {
+    try {
+        const applications = await applicationModel.getAllApplications();
 
-        res.json(rows);
-    });
+        res.json(applications);
+    } catch (err) {
+        console.error("Error fetching applications:", err.message);
+        res.status(500).json({ error: "Failed to fetch applications" });
+    }
 };
 
-const createApplication = (req, res) => {
+const createApplication = async (req, res) => {
     const {
         company,
         position,
@@ -31,8 +31,8 @@ const createApplication = (req, res) => {
         });
     }
 
-    const sql = `
-        INSERT INTO applications (
+    try {
+        const application = await applicationModel.createApplication({
             company,
             position,
             source,
@@ -43,38 +43,15 @@ const createApplication = (req, res) => {
             contact_person,
             notes,
             interview_date
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    const params = [
-        company,
-        position,
-        source,
-        link,
-        applied_date,
-        status || "Entwurf",
-        salary,
-        contact_person,
-        notes,
-        interview_date
-    ];
-
-    db.run(sql, params, function (err) {
-        if (err) {
-            console.error("Error creating application:", err.message);
-            return res.status(500).json({
-                error: "Failed to create application"
-            });
-        }
-
-        res.status(201).json({
-            id: this.lastID,
-            company,
-            position,
-            status: status || "Entwurf"
         });
-    });
+
+        res.status(201).json(application);
+    } catch (err) {
+        console.error("Error creating application:", err.message);
+        res.status(500).json({
+            error: "Failed to create application"
+        });
+    }
 };
 
 module.exports = {

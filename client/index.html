@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Tracker</title>
-
-    <link rel="stylesheet" href="css/styles.css">
-</head>
 <body>
 
     <h1>Job Application Tracker</h1>
+    <section class="dashboard">
+        <div class="dashboard-card">
+            <span class="card-label">Bewerbungen</span>
+            <strong id="total-applications">0</strong>
+        </div>
+    
+        <div class="dashboard-card">
+            <span class="card-label">Interviews</span>
+            <strong id="interview-count">0</strong>
+        </div>
+    
+        <div class="dashboard-card">
+            <span class="card-label">Absagen</span>
+            <strong id="rejection-count">0</strong>
+        </div>
+    
+        <div class="dashboard-card">
+            <span class="card-label">Angebote</span>
+            <strong id="offer-count">0</strong>
+        </div>
+    </section>
+    <h2>Neue Bewerbung</h2>
+
+    <form id="application-form">
+        <input type="text" id="company" placeholder="Firma" required>
+        <input type="text" id="position" placeholder="Position" required>
+        <button type="submit">Bewerbung anlegen</button>
+    </form>
+
+    <hr>
 
     <div id="applications-container">
         <p>Lade Bewerbungen...</p>
@@ -18,4 +39,3 @@
     <script src="js/app.js"></script>
 
 </body>
-</html>
