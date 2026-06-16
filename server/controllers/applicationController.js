@@ -11,6 +11,21 @@ const getAllApplications = async (req, res) => {
     }
 };
 
+const getApplicationById = async (req, res) => {
+    try {
+        const application = await applicationModel.getApplicationById(req.params.id);
+
+        if (!application) {
+            return res.status(404).json({ error: "Application not found" });
+        }
+
+        res.json(application);
+    } catch (err) {
+        console.error("Error fetching application:", err.message);
+        res.status(500).json({ error: "Failed to fetch application" });
+    }
+};
+
 const createApplication = async (req, res) => {
     const {
         company,
@@ -56,5 +71,6 @@ const createApplication = async (req, res) => {
 
 module.exports = {
     getAllApplications,
+    getApplicationById,
     createApplication
 };
